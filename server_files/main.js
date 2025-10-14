@@ -1,5 +1,3 @@
-console.log("Hello world!")
-
 function open_dropdown_menu() {
     document.getElementById("dropdown-content").style.display = "block";
 }
