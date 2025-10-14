@@ -32,17 +32,26 @@ fn handle_connection(mut stream: TcpStream) -> io::Result<()>  {
     if route == "/" {
         let contents = fs::read_to_string("server_files/index.html")?;
         let length = contents.len();
-        let response = format!("{status_line}\r\nContent-Length: {length}\r\nContent-Type: document\r\n\r\n{contents}");
+        let content_type = "document";
+        let response = format!("{status_line}\r\nContent-Length: {length}\r\nContent-Type: {content_type}\r\n\r\n{contents}");
         stream.write_all(response.as_bytes())?;
     } else if route == "/about" {
         let contents = fs::read_to_string("server_files/about.html")?;
         let length = contents.len();
-        let response = format!("{status_line}\r\nContent-Length: {length}\r\nContent-Type: document\r\n\r\n{contents}");
+        let content_type = "document";
+        let response = format!("{status_line}\r\nContent-Length: {length}\r\nContent-Type: {content_type}\r\n\r\n{contents}");
         stream.write_all(response.as_bytes())?;
     } else if route == "/styles.css" {
         let contents = fs::read_to_string("server_files/styles.css")?;
         let length = contents.len();
-        let response = format!("{status_line}\r\nContent-Length: {length}\r\nContent-Type: text/css\r\n\r\n{contents}");
+        let content_type = "text/css";
+        let response = format!("{status_line}\r\nContent-Length: {length}\r\nContent-Type: {content_type}\r\n\r\n{contents}");
+        stream.write_all(response.as_bytes())?;
+    } else if route == "/main.js" {
+        let contents = fs::read_to_string("server_files/main.js")?;
+        let length = contents.len();
+        let content_type = "script";
+        let response = format!("{status_line}\r\nContent-Length: {length}\r\nContent-Type: {content_type}\r\n\r\n{contents}");
         stream.write_all(response.as_bytes())?;
     } else if route == "/favicon.png" {
         let mut img_bytes: Vec<u8> = Vec::new();
