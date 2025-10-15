@@ -18,5 +18,5 @@ cargo run --bin backend
 
 Lint the codebase with Clippy
 ```
-cargo clippy --all-targets --all-features
+cargo clippy --all-targets --all-features -- -W clippy::pedantic
 ```
