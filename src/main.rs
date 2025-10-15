@@ -70,12 +70,11 @@ fn handle_connection(mut stream: TcpStream) -> io::Result<()>  {
 
 fn get_encoded_image_data(mut img_bytes: Vec<u8>, img_file_path: &str) -> Vec<u8> {
     let encoder = PngEncoder::new_with_quality(&mut img_bytes, CompressionType::Default, FilterType::NoFilter);
-    let img_reader_result = ImageReader::open(img_file_path); //.unwrap().decode().unwrap();
-    if img_reader_result.is_ok() {
-        let img_reader = img_reader_result.unwrap();
-        let img = img_reader.decode().unwrap();
+    let img_reader = ImageReader::open(img_file_path);
+    if let Ok(value) = img_reader {
+        let img = value.decode().unwrap();
         img.write_with_encoder(encoder).unwrap();
     }
 
-    return img_bytes;
+    img_bytes
 }
