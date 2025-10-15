@@ -10,7 +10,6 @@ use serde_json::{Value, json};
 
 #[tokio::main]
 async fn main() {
-    // Access-Control-Allow-Headers
     let cors_layer = CorsLayer::new()
         .allow_methods([Method::GET, Method::POST])
         .allow_headers(Any)
