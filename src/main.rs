@@ -24,7 +24,7 @@ fn handle_connection(mut stream: TcpStream) -> io::Result<()>  {
         .collect();
 
     let request_line = &http_request[0];
-    let request_items_split = request_line.split(" ");
+    let request_items_split = request_line.split(' ');
     let request_items = request_items_split.collect::<Vec<&str>>();
     let route = request_items[1];
 
