@@ -24,7 +24,7 @@ async fn main() {
     let ip_address_string = format!("127.0.0.1:{port}");
     let ip_address = ip_address_string.as_str();
     let listener = tokio::net::TcpListener::bind(ip_address).await.unwrap();
-    println!("Backend server running at http://{}.", ip_address);
+    println!("Backend server running at http://{ip_address}");
     axum::serve(listener, app).await.unwrap();
 }
 
