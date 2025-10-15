@@ -13,3 +13,10 @@ Run the backend server
 ```
 cargo run --bin backend
 ```
+
+## Linting the Codebase
+
+Lint the codebase with Clippy
+```
+cargo clippy --all-targets --all-features
+```
